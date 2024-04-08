@@ -1,0 +1,47 @@
+Introduction
+⌨️ (02:03:05) Introduction
+
+Remix
+Solidity Documentation
+Setting Up Your First Contract
+⌨️ (02:05:18) Setting Up Your First Contract
+
+Versioning
+Take notes in your code!
+What is a software license
+SPDX License
+Compiling
+Contract Declaration
+Basic Solidity: Types
+⌨️ (02:12:28) Basic Solidity Types
+
+Types & Declaring Variables
+uint256, int256, bool, string, address, bytes32
+Solidity Types
+Bits and Bytes
+Default Initializations
+Comments
+Basic Solidity: Functions
+⌨️ (02:18:40) Basic Solidity Functions
+
+Functions
+Deploying a Contract
+Smart Contracts have addresses just like our wallets
+Calling a public state-changing Function
+Visibility
+Gas III | An example
+Scope
+View & Pure Functions
+Basic Solidity: Arrays & Structs
+⌨️ (02:35:30) Basic Solidity Arrays & Structs
+
+Structs
+Intro to Storage
+Arrays
+Dynamic & Fixed Sized
+push array function
+Basic Solidity: Compiler Errors and Warnings
+⌨️ (02:45:35) Basic Solidity Errors & Warnings
+
+Yellow: Warnings are Ok
+Red: Errors are not Ok
