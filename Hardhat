@@ -1,0 +1,269 @@
+##
+Blokchain-notes
+
+Type / to search
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Files
+Go to file
+t
+Surya
+hardhat-tutorial
+artifacts
+cache
+contracts
+ignition
+test
+.gitignore
+README.md
+hardhat.config.js
+image-1.png
+image-2.png
+image-3.png
+image-4.png
+image-5.png
+image-6.png
+image.png
+package-lock.json
+package.json
+Docker.md
+README.md
+image-1.png
+image-2.png
+image-3.png
+image-4.png
+image-5.png
+image.png
+solidity-sec-audit.md
+BreadcrumbsBlokchain-notes
+/hardhat-tutorial/
+Directory actionsAdd file
+More options
+Latest commit
+ImgBotApp
+ImgBotApp
+[ImgBot] Optimize images
+473ece5
+ · 
+4 days ago
+History
+BreadcrumbsBlokchain-notes
+/hardhat-tutorial/
+Folders and files
+Name	Last commit message	Last commit date
+parent directory
+..
+artifacts
+final udpate
+4 days ago
+cache
+final udpate
+4 days ago
+contracts
+hardhat added
+4 days ago
+ignition
+final udpate
+4 days ago
+test
+hardhat added
+4 days ago
+.gitignore
+hardhat added
+4 days ago
+README.md
+final udpate
+4 days ago
+hardhat.config.js
+final udpate
+4 days ago
+image-1.png
+[ImgBot] Optimize images
+4 days ago
+image-2.png
+[ImgBot] Optimize images
+4 days ago
+image-3.png
+[ImgBot] Optimize images
+4 days ago
+image-4.png
+[ImgBot] Optimize images
+4 days ago
+image-5.png
+[ImgBot] Optimize images
+4 days ago
+image-6.png
+[ImgBot] Optimize images
+4 days ago
+image.png
+[ImgBot] Optimize images
+4 days ago
+package-lock.json
+hardhat added
+4 days ago
+package.json
+hardhat added
+4 days ago
+README.md
+Hardhat notes
+Contents
+Introduction
+Installation
+Pre-requisites
+Creating a new project
+Installing Hardhat
+writing and compiling contracts
+Writing contracts
+Compiling contracts
+Testing contracts
+Writing tests
+Running tests
+Deploying contracts to live network
+Deployment to remote networks
+Conclusion
+References
+Introduction
+Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software. It helps developers manage and automate the recurring tasks that are inherent to the process of building smart contracts and dApps, as well as easily introducing more functionality around this workflow.
+
+Installation
+Pre-requisites
+Node.js
+# remove old versions
+$ sudo apt remove nodejs
+# install nodejs
+$ sudo apt install nodejs
+npm
+# remove old versions
+$ sudo apt remove npm
+# install npm
+$ sudo apt install npm
+Creating a new project
+Create a new directory for your project
+
+$ mkdir my-project
+$ cd my-project
+Initialize a new npm project
+
+$ npm init -y
+Install Hardhat
+
+$ npm install --save-dev hardhat
+Initialize Hardhat
+
+$ npx hardhat
+Choose Create an empty hardhat.config.js and press enter
+
+alt text
+
+Install the Hardhat plugin for ethers.js, we will use recommended plugins here
+
+$ npm install --save-dev @nomicfoundation/hardhat-toolbox
+Add the following lines to hardhat.config.js
+
+require("@nomicfoundation/hardhat-toolbox");
+wchich will look like this
+
+alt text
+
+Writing and compiling contracts
+Writing contracts
+Create a new contract file in the contracts/ directory
+$ touch contracts/Token.sol
+Write your contract in the file you just created.
+Sample contract
+Compiling contracts
+Run the following command to compile your contracts
+$ npx hardhat compile
+Compiled 1 Solidity file successfully (evm target: paris).
+Testing contracts
+Writing tests
+Create a new test file in the test/ directory
+$ touch test/Token.js
+Write your tests in the file you just created.
+Sample test
+Running tests
+Run the following command to run your tests
+$ npx hardhat test
+which will look like this
+
+alt text
+
+Deploying contracts to live network
+In Hardhat Ignition, deployments are defined through Ignition Modules. These modules are abstractions to describe a deployment; that is, JavaScript functions that specify what you want to deploy.
+
+Ignition modules are expected to be within the ./ignition/modules directory. Let's create a new directory ignition inside the project root's directory, then, create a directory named modules inside of the ignition directory. Paste the following into a Token.js file in that directory:
+
+Check Here: Sample deployment module
+
+To tell Hardhat to connect to a specific Ethereum network, you can use the --network parameter when running any task, like this:
+
+$ npx hardhat ignition deploy ./ignition/modules/Token.js --network <network-name>
+If we dont use --network parameter, deployment actually gets lost when Hardhat finishes running, but still can be used for testing purposes.
+
+alt text
+
+Deployment to remote networks
+To deploy to a remote network, you need to specify the network in the hardhat.config.js file. Here is an example of how to deploy to the Rinkeby testnet:
+
+require("@nomicfoundation/hardhat-toolbox");
+
+// Ensure your configuration variables are set before executing the script
+const { vars } = require("hardhat/config");
+
+// Go to https://infura.io, sign up, create a new API key
+// in its dashboard, and add it to the configuration variables
+const INFURA_API_KEY = vars.get("INFURA_API_KEY");
+
+// Add your Sepolia account private key to the configuration variables
+// To export your private key from Coinbase Wallet, go to
+// Settings > Developer Settings > Show private key
+// To export your private key from Metamask, open Metamask and
+// go to Account Details > Export Private Key
+// Beware: NEVER put real Ether into testing accounts
+const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
+
+module.exports = {
+solidity: "0.8.24",
+networks: {
+    sepolia: {
+    url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+    accounts: [SEPOLIA_PRIVATE_KEY],
+    },
+},
+};
+Now, run this comman to check which variable are to be configured
+
+$ npx hardhat vars setup
+alt text
+
+Now, set the variables using below command
+
+$ npx hardhat vars set INFURA_API_KEY <your-infura-api-key>
+$ npx hardhat vars set SEPOLIA_PRIVATE_KEY <your-sepolia-private-key>
+Finally, deploy to the Sepolia network using the following command
+
+$ npx hardhat ignition deploy ./ignition/modules/Token.js --network sepolia
+? Confirm deploy to network sepolia (11155111)? » (y/N) <y>
+alt text
+
+And when you search for the Deployed Addresses, in this case:
+
+TokenModule#Token = 0xE90BCD69b097DeE0eeC33Ac0a6dB9fa922a7B3Cf
+
+and when you visit this site Blockchain.com/explore and search for this address, you will see the details of the Dapp.
+
+alt text
+
+Conclusion
+Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software. It helps developers manage and automate the recurring tasks that are inherent to the process of building smart contracts and dApps, as well as easily introducing more functionality around this workflow.
+
+References
+Hardhat Tutorial
+Hardhat Docs
+Upload files · binary-lover/Blokchain-notes  
